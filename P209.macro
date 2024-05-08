@@ -1,0 +1,40 @@
+; Validate
+o50 if [#1001 NE 1]
+  (debug, RapidChange settings are not initialized.)
+  M99
+o50 endif
+
+o60 if [#<_rc_cover_mode> EQ 0]
+  (debug, Dust cover disabled.)
+o60 endif
+(debug, Dust cover close validated)
+
+; Record current units
+o200 if [#<_metric> EQ 0]
+  #<_rc_return_units> = 20
+o200 else
+  #<_rc_return_units> = 21
+o200 endif
+(debug, Units recorded)
+
+; Open the dust cover if enabled.
+; This can be removed if the tool setter is not in the magazine.
+o550 if [#<_rc_cover_mode> EQ 1]
+  ; Axis Mode: move along the configured axis to the open position.
+  G[#<_rc_units>] G90
+  o560 if [#<_rc_cover_axis> EQ 3]
+    G53 G0 A[#<_rc_cover_c_pos>]
+  o560 elseif [#<_rc_cover_axis> EQ 4]
+    G53 G0 B[#<_rc_cover_c_pos>]
+  o560 elseif [#<_rc_cover_axis> EQ 5]
+    G53 G0 C[#<_rc_cover_c_pos>]
+  o560 endif
+  G[#<_rc_return_units>]
+o550 elseif [#<_rc_cover_mode> EQ 2]
+  ; Output Mode: Turn on the output and dwell
+  G4 P0
+  M65 P[#<_rc_cover_output>]
+  G4 P[#<_rc_cover_dwell>]
+  (debug, Dwell for cover)
+o550 endif
+(debug, Dust cover closed)

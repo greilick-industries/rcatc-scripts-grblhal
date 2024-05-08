@@ -1,0 +1,319 @@
+; Copyright (C) 2024 Greilick Industries LLC
+
+; ******************************************
+; ******** BEGIN USER CONFIGURATION ********
+; ******************************************
+; ATC Operations
+; The units for your configuration: 20 = Inches, 21 = Millimeters
+#<_rc_units> = 20
+(debug, Units: #<_rc_units>)
+
+; The number of pockets in your magazine.
+#<_rc_pockets> = 0
+(debug, Pockets: #<_rc_pockets>)
+
+; The pocket offset for your magazine.
+#<_rc_pocket_offset> = 0
+(debug, Pocket Offset: #<_rc_pocket_offset>)
+
+; The axis along which the magazine is aligned: 0 = X Axis, 1 = Y Axis.
+#<_rc_alignment> = 0
+(debug, Alignment: #<_rc_alignment>)
+
+; The direction of travel from pocket 1 to pocket 2: 1 = Positive, -1 = Negative.
+#<_rc_direction> = 1
+(debug, Direction: #<_rc_direction>)
+
+; The X an Y machine coordinate positions of pocket 1.
+#<_rc_pocket_one_x> = 0
+(debug, Pocket 1 X: #<_rc_pocket_one_x>)
+#<_rc_pocket_one_y> = 0
+(debug, Pocket 1 Y: #<_rc_pocket_one_y>)
+
+; The Z machine coordinate positon of engagement.
+#<_rc_engage_z> = 0
+(debug, Engage Z: #<_rc_engage_z>)
+
+; The Z machine coordinate position at which to start the spindle when loading.
+#<_rc_load_spin_z> = 0
+(debug, Load Spindle Start Z: #<_rc_load_spin_z>)
+
+; The number of times to plunge when loading.
+#<_rc_plunge_count> = 0
+(debug, Load Plunge Count: #<_rc_plunge_count>)
+
+; The Z machine coordinate position to rise to after unloading, before moving to load.
+#<_rc_to_load_z> = 0
+(debug, Move To Load Z: #<_rc_to_load_z>)
+
+; The Z machine coordinate position to rise to after loading, before moving to meeasure.
+#<_rc_to_measure_z> = 0
+(debug, Move To Measure Z: #<_rc_to_measure_z>)
+
+; The Z machine coordinate position for clearing all obstacles.
+#<_rc_safe_z> = 0
+(debug, Safe Clearance Z: #<_rc_safe_z>)
+
+; The feed rate for engagement.
+#<_rc_engage_feed> = 0
+(debug, Engage Feed Rate: #<_rc_engage_feed>)
+
+; Spindle speed CCW
+#<_rc_unload_rpm> = 0
+(debug, Unload RPM: #<_rc_unload_rpm>)
+
+; Spindle speed CW
+#<_rc_load_rpm> = 0
+(debug, Load RPM: #<_rc_load_rpm>)
+
+; Manual Tool Change
+; X and Y machine coordinates to move to for a manual load/unload.
+#<_rc_manual_x> = 0
+(debug, Manual X: #<_rc_manual_x>)
+#<_rc_manual_y> = 0
+(debug, Manual Y: #<_rc_manual_y>)
+
+; Dust Cover
+; The dust cover operational mode: 0 = Disabled, 1 = Axis, 2 = Output
+#<_rc_cover_mode> = 0
+(debug, Dust Cover Mode: #<_rc_cover_mode>)
+
+; The axis for axis mode: 3 = A Axis, 1 = B Axis, 2 = C Axis
+#<_rc_cover_axis> = 0
+(debug, Dust Cover Axis: #<_rc_cover_axis>)
+
+; The machine coordinate closed position for axis mode.
+#<_rc_cover_c_pos> = 0
+(debug, Dust Cover Closed Pos: #<_rc_cover_c_pos>)
+
+; The machine coordinate open position for axis mode.
+#<_rc_cover_o_pos> = 0
+(debug, Dust Cover Open Pos: #<_rc_cover_o_pos>)
+
+; The output number for output mode.
+#<_rc_cover_output> = 0
+(debug, Dust Cover Output: #<_rc_cover_output>)
+
+; The time to dwell in output mode to allow the cover to fully open/close before moving.
+#<_rc_cover_dwell> = 0
+(debug, Dust Cover Dwell: #<_rc_cover_dwell>)
+
+; Tool Recognition
+; Tool recognition mode: 0 = Disabled-User confirmation only, 1 = Enabled
+#<_rc_recognize> = 0
+(debug, Tool Recognition Enabled: #<_rc_recognize>)
+
+; IR sensor input number.
+#<_rc_rec_input> = 0
+(debug, Tool Recognition Input: #<_rc_rec_input>)
+
+; Z Machine coordinate positions tool recognition.
+#<_rc_zone_one_z> = 0
+(debug, Tool Recognition Zone 1 Z: #<_rc_zone_one_z>)
+#<_rc_zone_two_z> = 0
+(debug, Tool Recognition Zone 2 Z: #<_rc_zone_two_z>)
+
+; Tool Measurement
+; Tool measurement mode: 0 = Disabled, 1 = Enabled
+#<_rc_measure> = 0
+(debug, Tool Measure Enabled: #<_rc_measure>)
+
+; X and Y machine coordinate positions of the tool setter.
+#<_rc_measure_x> = 0
+(debug, Tool Measure X: #<_rc_measure_x>)
+#<_rc_measure_y> = 0
+(debug, Tool Measure Y: #<_rc_measure_y>)
+
+; Z machine coordinate position at which to begin the initial probe.
+#<_rc_measure_start_z> = 0
+(debug, Tool Measure Start Z: #<_rc_measure_start_z>)
+
+; The distance to probe in search of the tool setter for the initial probe.
+#<_rc_seek_dist> = 0
+(debug, Tool Measure Seek Distance: #<_rc_seek_dist>)
+
+; The distance to retract after the initial probe trigger.
+#<_rc_retract_dist> = 0
+
+(debug, Tool Measure Retract Distance: #<_rc_retract_dist>)
+
+; The feed rate for the initial probe.
+#<_rc_seek_feed> = 0
+(debug, Tool Measure Seek Feed Rate: #<_rc_seek_feed>)
+
+; The feed rate for the second probe.
+#<_rc_set_feed> = 0
+(debug, Tool Measure Set Feed Rate: #<_rc_set_feed>)
+
+; The optional reference position for TLO. This may remain at it's default of 0 or be customized.
+#<_rc_tlo_ref> = 0
+(debug, Tool Measure TLO Ref Pos: #<_rc_tlo_ref>)
+; ******************************************
+; ********* END USER CONFIGURATION *********
+; ******************************************
+
+; ********************************************
+; ******** BEGIN CALCULATED SETTINGS *********
+; ******** DO NOT ALTER THIS SECTION *********
+; ********************************************
+; Set static offsets
+; These calculated offsets are consumed by RapidChange macros.
+o100 if [#<_rc_units> EQ 20]
+  #<_rc_z_spin_off> = 0.91
+  #<_rc_z_retreat_off> = 0.47
+  #<_rc_set_distance> = [#<_rc_retract_dist> + 0.04]
+  (debug, Static offsets set for inches)
+o100 else
+  #<_rc_z_spin_off> = 23
+  #<_rc_z_retreat_off> = 12
+  #<_rc_set_distance> = [#<_rc_retract_dist> + 1]
+  (debug, Static offsets set for millimeters)
+o100 endif
+
+
+; The flag indicating that the settings have been loaded into memory.
+#1001 = 1
+(debug, Flag Set: #1001)
+(debug, RapidChange ATC Configuration Loaded)
+; ********************************************
+; ******** END CALCULATED SETTINGS ***********
+; ********************************************
+
+
+; ********************************************
+; ******** BEGIN TOOL SYNC AND TLO ***********
+; ********************************************
+; This code adds Q parameter functionality allowing for the
+; syncing of the firmware with the tool in the spindle.
+; Q0 runs the configuration code only, useful for updating settings.
+; Q98 sets the current tool to 98, symbol for tool 0.
+; Q[Any positive integer] sets the current tool to the value and measures the tool. 
+
+o1000 if [#17 EQ 0]
+  (debug, Current Tool: #<_current_tool>)
+  M99
+o1000 elseif [#17 EQ 98]
+  M61 Q98
+  (debug, Current Tool: #<_current_tool>)
+  M99
+o1000 elseif [#17 GT 0]
+  M61 Q[#17]
+  (debug, Current Tool: #<_current_tool>)
+  o600 if [#<_current_tool> EQ 98]
+    ; We selected tool 98, same as tool 0. Do nothing.
+  o600 elseif [#<_rc_measure> EQ 1]
+    ; Remove any G43.1 Z offset
+    G43.1 Z0
+    (debug, G43.1 Z offset removed)
+
+    ; Turn off spindle and coolant
+    M5
+    M9
+    (debug, Spindle and coolant turned off)
+
+    ; Record current units
+    o200 if [#<_metric> EQ 0]
+      #<_rc_return_units> = 20
+    o200 else
+      #<_rc_return_units> = 21
+    o200 endif
+    (debug, Units recorded)
+
+    ; Activate configured units and absolute distance mode
+    G[#<_rc_units>] G90
+    (debug, Set units and distance)
+
+    o610 if [#5220 EQ 1]
+      #<_rc_z_offset> = [#5213 + #5223]
+      (debug, Z Offset Calculated in G54: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 2]
+      #<_rc_z_offset> = [#5213 + #5243]
+      (debug, Z Offset Calculated in G55: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 3]
+      #<_rc_z_offset> = [#5213 + #5263]
+      (debug, Z Offset Calculated in G56: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 4]
+      #<_rc_z_offset> = [#5213 + #5283]
+      (debug, Z Offset Calculated in G57: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 5]
+      #<_rc_z_offset> = [#5213 + #5303]
+      (debug, Z Offset Calculated in G58: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 6]
+      #<_rc_z_offset> = [#5213 + #5323]
+      (debug, Z Offset Calculated in G59: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 7]
+      #<_rc_z_offset> = [#5213 + #5343]
+      (debug, Z Offset Calculated in G59.1: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 8]
+      #<_rc_z_offset> = [#5213 + #5363]
+      (debug, Z Offset Calculated in G59.2: #<_rc_z_offset>)
+    o610 elseif [#5220 EQ 9]
+      #<_rc_z_offset> = [#5213 + #5383]
+      (debug, Z Offset Calculated in G59.3: #<_rc_z_offset>)
+    o610 endif
+
+    G53 G90 G0 Z[#<_rc_safe_z>]
+    (debug, Move to Z safe)
+    G53 G0 X[#<_rc_measure_x>] Y[#<_rc_measure_y>]
+    (debug, Move to tool setter XY)
+    G53 G0 Z[#<_rc_measure_start_z>]
+    (debug, Down to Z seek start)
+    G38.2 G91 Z[#<_rc_seek_dist> * -1] F[#<_rc_seek_feed>]
+    (debug, Probe Z down seek mode)
+    G0 G91 Z[#<_rc_retract_dist>]
+    (debug, Retract from tool setter)
+    G38.2 G91 Z[#<_rc_set_distance> * -1]
+    (debug, Probe Z down set mode)
+    G53 G0 G90 Z[#<_rc_safe_z>]
+    (debug, Triggered Work Z: #5063)
+
+    #<_rc_trigger_mach_z> = [#5063 + #<_rc_z_offset>]
+    (debug, Triggered Mach Z: #<_rc_trigger_mach_z>)
+    G4 P0
+
+    o620 if [#<_rc_tlo_ref> EQ 0]
+      (debug, Ref Mach Pos: 0, Work Z before G43.1: #<_z>)
+      G43.1 Z[#<_rc_trigger_mach_z>]
+      (debug, Ref Mach Pos: 0, Work Z after G43.1: #<_z>)
+    o620 else
+      (debug, Ref Mach Pos: #<_rc_tlo_ref>, Work Z before G43.1: #<_z>)
+      G43.1 Z[#<_rc_tlo_ref> - #<_rc_trigger_mach_z>]
+      (debug, Ref Mach Pos: #<_rc_tlo_ref>, Work Z after G43.1: #<_z>)
+    o620 endif
+
+    ; Close the dust cover if enabled.
+    o550 if [#<_rc_cover_mode> EQ 1]
+      ; Axis Mode: move along the configured axis to the open position.
+      o560 if [#<_rc_cover_axis> EQ 3]
+        G53 G0 A[#<_rc_cover_c_pos>]
+      o560 elseif [#<_rc_cover_axis> EQ 4]
+        G53 G0 B[#<_rc_cover_c_pos>]
+      o560 elseif [#<_rc_cover_axis> EQ 5]
+        G53 G0 C[#<_rc_cover_c_pos>]
+      o560 endif
+    o550 elseif [#<_rc_cover_mode> EQ 2]
+      ; Output Mode: Turn on the output and dwell
+      (debug, Close cover output branch reached)
+      G4 P0
+      M65 P[#<_rc_cover_output>]
+      G4 P[#<_rc_cover_dwell>]
+      (debug, Dwell for cover)
+    o550 endif
+
+    ; Restore units
+    G[#<_rc_return_units>]
+    (debug, Units restored)
+  o600 else
+    ; Tool measure is disabled
+    (debug, Tool measurement disabled)
+    G53 G0 Z[#<_rc_safe_z>]
+    (debug, Moved to safe clearance)
+  o600 endif
+
+  ; Restore units
+  G[#<_rc_return_units>]
+  (debug, Units restored)
+o1000 endif
+; ********************************************
+; ********* END TOOL SYNC AND TLO ************
+; ********************************************
