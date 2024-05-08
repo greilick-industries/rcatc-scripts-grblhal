@@ -2,6 +2,18 @@
 
 ## Important Notes
 
+### Persistance
+
+The current tool, tool offset, and RapidChange settings only persist for the duration of a single firmware power
+cycle. This means that anytime the firmware is rebooted or powered on, these values will be lost and will need to
+be initialized. P200 is included in this macro package to provide that initialization functionality. Once initialized,
+the settings will persist for the remainder of the session.
+
+### Nesting
+Nesting of macro calls is not currently supported in GrblHAL core. P200 is also designed to provide a workaround to
+this limitation. Since the included functional macros may not call a configuration macro, they instead make a logic 
+check to ensure that the RapidChange settings have already been loaded with P200.
+
 ### Tool 0
 Changing tools automatically to a bare spindle may not be achieved using T0. Calling M6 with 0 for the selected
 tool will bypass the TC.macro and simply set the current tool to 0 without unloading. These macros use Tool 98
