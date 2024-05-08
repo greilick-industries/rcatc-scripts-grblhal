@@ -1,5 +1,7 @@
 # RapidChange ATC Scripts for GrblHAL
 
+## Firmware Requirements
+
 ## Important Notes
 
 ### Persistance
@@ -23,6 +25,13 @@ same tool(None).
 ### Debug Messages
 The included macros use the DEBUG function to provide messages to the user and aid in debugging when there is an
 unexpected issue. In order for the messages to print to the console, setting $534 must be set to 1.
+
+### Updating Settings
+It is a good idea to store a local copy of P200.macro, so that you can make changes to the settings in a text editor.
+Whenever you want to update one or more settings:
+- Make the appropriate changes to your local P200.macro.
+- Upload the modified P200.macro to your SD card.
+- Execute G65 P200 Q0 to update the settings only.
 
 ## Included Macros
 
@@ -82,3 +91,4 @@ TC.macro is called whenever an M6 with a valid selected tool is encountered.
 Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
 the macros for the first time so that the firmware recognizes TC.macro and will call it when encountering
 an M6 command.
+
