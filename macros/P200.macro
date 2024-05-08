@@ -194,6 +194,7 @@ o100 endif
 ; Q0 runs the configuration code only, useful for updating settings.
 ; Q98 sets the current tool to 98, symbol for tool 0.
 ; Q[Any positive integer] sets the current tool to the value and measures the tool. 
+; DO NOT ASSUME A DEFAULT FOR Q!!! Always supply an explicit argument!
 o1000 if [#17 EQ 0]
   (debug, Current Tool: #<_current_tool>)
   M99
