@@ -1,7 +1,23 @@
-; ******************************************
-; ************ BEGIN VALIDATION ************
-; ******************************************
+; 
+; Copyright (C) 2024 Greilick Industries LLC
 
+; RapidChange ATC Macros for GrblHAL is free software:
+; You can redistribute it and/or modify it under the terms
+; of the GNU General Public License as published by
+; the Free Software Foundation, under version 3 of the License.
+
+; RapidChange ATC Macros for GrblHAL is distributed in the
+; hope that it will be useful, but WITHOUT ANY WARRANTY
+; without even the implied warranty of MERCHANTABILITY or
+; FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+; License for more details.
+
+; You should have received a copy of the GNU General Public License
+; along with RapidChange ATC Macros for GrblHAL.  
+; If not, see <https://www.gnu.org/licenses/>.
+;
+
+; ************ BEGIN VALIDATION ************
 o50 if [#1001 NE 1]
   (debug, RapidChange settings are not initialized. Tool measure aborted.)
   M99
@@ -17,15 +33,9 @@ o100 elseif [#<_current_tool> EQ 0]
   M99
 o100 endif
 (debug, Tool measure validated)
-
-; TODO: Add probe check?
-; ******************************************
 ; ************* END VALIDATION *************
-; ******************************************
 
-; ******************************************
 ; ************** BEGIN SETUP ***************
-; ******************************************
 ; Turn off spindle and coolant
 M5
 M9
@@ -63,13 +73,9 @@ o500 elseif [#<_rc_cover_mode> EQ 2]
   M64 P[#<_rc_cover_output>]
   G4 P[#<_rc_cover_dwell>]
 o500 endif
-; ******************************************
 ; *************** END SETUP ****************
-; ******************************************
 
-; ******************************************
 ; ************* BEGIN MEASURE **************
-; ******************************************
 o600 if [#<_rc_measure> EQ 1]
   ; Tool measure is enabled and we have a tool from validation.
   ; Remove any G43.1 Z offset
@@ -138,13 +144,9 @@ o600 else
   G53 G0 Z[#<_rc_safe_z>]
   (debug, Moved to safe clearance)
 o600 endif
-; ******************************************
 ; ************* END MEASURE ****************
-; ******************************************
 
-; ******************************************
 ; ************ BEGIN TEARDOWN **************
-; ******************************************
 ; Close the dust cover if enabled.
 o550 if [#<_rc_cover_mode> EQ 1]
   ; Axis Mode: move along the configured axis to the open position.
@@ -168,6 +170,4 @@ o550 endif
 G[#<_rc_return_units>]
 (debug, Units restored)
 (debug, Tool change complete)
-; ******************************************
 ; ************* END TEARDOWN ***************
-; ******************************************

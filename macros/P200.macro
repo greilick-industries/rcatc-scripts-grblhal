@@ -1,8 +1,23 @@
+; 
 ; Copyright (C) 2024 Greilick Industries LLC
 
-; ******************************************
+; RapidChange ATC Macros for GrblHAL is free software:
+; You can redistribute it and/or modify it under the terms
+; of the GNU General Public License as published by
+; the Free Software Foundation, under version 3 of the License.
+
+; RapidChange ATC Macros for GrblHAL is distributed in the
+; hope that it will be useful, but WITHOUT ANY WARRANTY
+; without even the implied warranty of MERCHANTABILITY or
+; FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+; License for more details.
+
+; You should have received a copy of the GNU General Public License
+; along with RapidChange ATC Macros for GrblHAL.  
+; If not, see <https://www.gnu.org/licenses/>.
+; 
+
 ; ******** BEGIN USER CONFIGURATION ********
-; ******************************************
 ; ATC Operations
 ; The units for your configuration: 20 = Inches, 21 = Millimeters
 #<_rc_units> = 20
@@ -148,14 +163,10 @@
 ; The optional reference position for TLO. This may remain at it's default of 0 or be customized.
 #<_rc_tlo_ref> = 0
 (debug, Tool Measure TLO Ref Pos: #<_rc_tlo_ref>)
-; ******************************************
 ; ********* END USER CONFIGURATION *********
-; ******************************************
 
-; ********************************************
 ; ******** BEGIN CALCULATED SETTINGS *********
 ; ******** DO NOT ALTER THIS SECTION *********
-; ********************************************
 ; Set static offsets
 ; These calculated offsets are consumed by RapidChange macros.
 o100 if [#<_rc_units> EQ 20]
@@ -175,20 +186,14 @@ o100 endif
 #1001 = 1
 (debug, Flag Set: #1001)
 (debug, RapidChange ATC Configuration Loaded)
-; ********************************************
 ; ******** END CALCULATED SETTINGS ***********
-; ********************************************
 
-
-; ********************************************
 ; ******** BEGIN TOOL SYNC AND TLO ***********
-; ********************************************
 ; This code adds Q parameter functionality allowing for the
 ; syncing of the firmware with the tool in the spindle.
 ; Q0 runs the configuration code only, useful for updating settings.
 ; Q98 sets the current tool to 98, symbol for tool 0.
 ; Q[Any positive integer] sets the current tool to the value and measures the tool. 
-
 o1000 if [#17 EQ 0]
   (debug, Current Tool: #<_current_tool>)
   M99
@@ -314,6 +319,4 @@ o1000 elseif [#17 GT 0]
   G[#<_rc_return_units>]
   (debug, Units restored)
 o1000 endif
-; ********************************************
 ; ********* END TOOL SYNC AND TLO ************
-; ********************************************
