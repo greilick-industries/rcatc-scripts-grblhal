@@ -20,6 +20,10 @@ tool will bypass the TC.macro and simply set the current tool to 0 without unloa
 as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
 same tool(None).
 
+### Debug Messages
+The included macros use the DEBUG function to provide messages to the user and aid in debugging when there is an
+unexpected issue. In order for the messages to print to the console, setting $534 must be set to 1.
+
 ## Included Macros
 
 ### P200
