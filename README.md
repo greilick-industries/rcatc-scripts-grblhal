@@ -1,10 +1,26 @@
 # RapidChange ATC Scripts for GrblHAL
 
+## Important Notes
+
+### Tool 0
+Changing tools automatically to a bare spindle may not be called using T0. Calling M6 with 0 for the selected
+tool will bypass the TC.macro and simply set the current tool to 0 without unloading. These macros use Tool 98
+as a substitute for Tool 0 and workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
+same tool(None).
+
 ## Macros
 
 ### P200
-P200.macro contains the settings for all RapidChange ATC macros. This macro must be run after any firmware
-reboot. 
+P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
+reboot to initialize tool state and RapidChange ATC settings. 
+
+```
+G65 P200 Q-
+```
+Q-- specifies the current tool in the spindle (if any) to sync the firmware with upon initialization.
+- 0:  Load RapidChange settings. No change to current tool. (Useful for updating settings only)
+- 98: Load RapidChange settings. Set current tool to 98(None).
+- VTN(Valid Tool Number): Load RapidChange settings. Set current tool to VTN. Perform tool measurement touch off.
 
 The User Configuration section at the beginning provides the variable declarations for all user settings.
 Enter the appropriate values into this section.
@@ -27,6 +43,18 @@ Enter the appropriate values into this section.
 (debug, Tool Measure TLO Ref Pos: #<_rc_tlo_ref>)
 ; ********* END USER CONFIGURATION *********
 ```
+
+### P208
+P208.macro opens the dust cover if enabled.
+
+### P209
+P209.macro closes the dust cover if enabled.
+
+### P231
+P231.macro performs a tool measurement if there is a valid current tool.
+
+### TC.macro
+TC.macro is called whenever an M6 with a valid selected tool is encountered.
 
 ## Usage
 
