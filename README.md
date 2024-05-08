@@ -3,7 +3,7 @@
 ## Firmware Requirements
 
 ### FlexiHAL
-[FlexiHAL has supported builds here](https://github.com/Expatria-Technologies/STM32F4xx/releases/tag/flexi-hal-v1.0.0.2)
+[FlexiHAL supported builds](https://github.com/Expatria-Technologies/STM32F4xx/releases/tag/flexi-hal-v1.0.0.2)
 
 
 ## Important Notes
