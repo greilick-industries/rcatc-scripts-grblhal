@@ -18,16 +18,12 @@ reboot to initialize tool state and RapidChange ATC settings.
 G65 P200 Q-
 ```
 Q-- specifies the current tool in the spindle (if any) to initialize.
-```
-G65 P200 Q0
-```
-Loads RapidChange settings but makes no change to current tool. This is useful updating your settings.
-```
-G65 P200 Q98
-```
-Loads RapidChange settings and sets the current tool to 98(None).
 
-Using any other valid tool number will load RapidChange settings and set the current tool to that number. 
+- Q0 loads RapidChange settings but makes no change to current tool. This is useful updating your settings.
+
+- Q98 loads RapidChange settings and sets the current tool to 98(None).
+
+- Using any other valid tool number will load RapidChange settings and set the current tool to that number. 
 It will then perform a tool measurement, leaving you in ready state.
 
 The User Configuration section at the beginning provides the variable declarations for all user settings.
