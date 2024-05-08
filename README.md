@@ -2,9 +2,22 @@
 
 ## Firmware Requirements
 
+### GrblHAL Core
+RapidChange ATC Macros for GrblHAL require GrblHAL core version 20240506 or higher.
+
+### SD Card
+
+
 ### FlexiHAL
+FlexiHAL boards will require the uFlexiNET Ethernet and SD Card Module.
 [FlexiHAL supported builds](https://github.com/Expatria-Technologies/STM32F4xx/releases/tag/flexi-hal-v1.0.0.2)
 
+## Other Boards
+Your board must support reading from an SD card. To build supported firmware:
+- [Visit the GrblHAL Web Builder](http://svn.io-engineering.com:8080/)
+- Go through the appropriate tabs enabling what you need.
+- Make sure RS274 NGC Expression support is checked.
+- Generate and download the firmware.
 
 ## Important Notes
 
