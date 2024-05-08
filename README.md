@@ -2,6 +2,10 @@
 
 ## Firmware Requirements
 
+### FlexiHAL
+[FlexiHAL has supported builds here](https://github.com/Expatria-Technologies/STM32F4xx/releases/tag/flexi-hal-v1.0.0.2)
+
+
 ## Important Notes
 
 ### Persistance
@@ -37,8 +41,7 @@ Whenever you want to update one or more settings:
 
 ### Installation
 Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
-the macros for the first time so that the firmware recognizes TC.macro and will call it when encountering
-an M6 command.
+the macros for the first time so that the firmware can recognize TC.macro.
 
 ### P200
 P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
