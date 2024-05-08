@@ -8,7 +8,7 @@ tool will bypass the TC.macro and simply set the current tool to 0 without unloa
 as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
 same tool(None).
 
-## Macros
+## Included Macros
 
 ### P200
 P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
