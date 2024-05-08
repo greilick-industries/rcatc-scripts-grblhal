@@ -31,7 +31,7 @@ It is a good idea to store a local copy of P200.macro, so that you can make chan
 Whenever you want to update one or more settings:
 - Make the appropriate changes to your local P200.macro.
 - Upload the modified P200.macro to your SD card.
-- Execute G65 P200 Q0 to update the settings only.
+- Execute G65 P200 Q0 to update the settings.
 
 ## Included Macros
 
