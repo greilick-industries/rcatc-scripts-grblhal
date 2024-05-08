@@ -35,6 +35,11 @@ Whenever you want to update one or more settings:
 
 ## Included Macros
 
+### Installation
+Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
+the macros for the first time so that the firmware recognizes TC.macro and will call it when encountering
+an M6 command.
+
 ### P200
 P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
 reboot to initialize tool state and RapidChange ATC settings. 
@@ -84,11 +89,3 @@ P231.macro performs a tool measurement if there is a valid current tool.
 
 ### TC.macro
 TC.macro is called whenever an M6 with a valid selected tool is encountered.
-
-## Usage
-
-### Macro Installation
-Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
-the macros for the first time so that the firmware recognizes TC.macro and will call it when encountering
-an M6 command.
-
