@@ -1,4 +1,4 @@
-# RapidChange ATC Scripts for GrblHAL
+# RapidChange ATC Macros for GrblHAL
 
 ## Firmware Requirements
 
