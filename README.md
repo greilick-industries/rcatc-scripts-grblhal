@@ -3,9 +3,9 @@
 ## Important Notes
 
 ### Tool 0
-Changing tools automatically to a bare spindle may not be called using T0. Calling M6 with 0 for the selected
+Changing tools automatically to a bare spindle may not be achieved using T0. Calling M6 with 0 for the selected
 tool will bypass the TC.macro and simply set the current tool to 0 without unloading. These macros use Tool 98
-as a substitute for Tool 0 and workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
+as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
 same tool(None).
 
 ## Macros
@@ -17,10 +17,18 @@ reboot to initialize tool state and RapidChange ATC settings.
 ```
 G65 P200 Q-
 ```
-Q-- specifies the current tool in the spindle (if any) to sync the firmware with upon initialization.
-- 0:  Load RapidChange settings. No change to current tool. (Useful for updating settings only)
-- 98: Load RapidChange settings. Set current tool to 98(None).
-- VTN(Valid Tool Number): Load RapidChange settings. Set current tool to VTN. Perform tool measurement touch off.
+Q-- specifies the current tool in the spindle (if any) to initialize.
+```
+G65 P200 Q0
+```
+Loads RapidChange settings but makes no change to current tool. This is useful updating your settings.
+```
+G65 P200 Q98
+```
+Loads RapidChange settings and sets the current tool to 98(None).
+
+Using any other valid tool number will load RapidChange settings and set the current tool to that number. 
+It will then perform a tool measurement, leaving you in ready state.
 
 The User Configuration section at the beginning provides the variable declarations for all user settings.
 Enter the appropriate values into this section.
