@@ -76,7 +76,7 @@ Enter the appropriate values into this section.
 ; ******** BEGIN USER CONFIGURATION ********
 ; ATC Operations
 ; The units for your configuration: 20 = Inches, 21 = Millimeters
-#<_rc_units> = ==20==
+#<_rc_units> = 20
 (debug, Units: #<_rc_units>)
 
 ; The number of pockets in your magazine.
