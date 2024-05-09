@@ -76,12 +76,12 @@ Enter the appropriate VALUE
 ```
 #<_rc_setting_name> = VALUE
 ```
-Excerpt from P200.macro
+Example from P200.macro
 ```
 ; ******** BEGIN USER CONFIGURATION ********
 ; ATC Operations
 ; The units for your configuration: 20 = Inches, 21 = Millimeters
-#<_rc_units> = 20
+#<_rc_units> = 21
 (debug, Units: #<_rc_units>)
 
 ; The number of pockets in your magazine.
@@ -91,7 +91,7 @@ Excerpt from P200.macro
 ...
 
 ; The optional reference position for TLO. This may remain at it's default of 0 or be customized.
-#<_rc_tlo_ref> = 0
+#<_rc_tlo_ref> = -43.566
 (debug, Tool Measure TLO Ref Pos: #<_rc_tlo_ref>)
 ; ********* END USER CONFIGURATION *********
 ```
