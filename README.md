@@ -72,6 +72,11 @@ It will then perform a tool measurement, leaving you in ready state.
 The User Configuration section at the beginning provides the variable declarations for all user settings.
 Enter the appropriate values into this section.
 
+Enter the appropriate VALUE
+```
+#<_rc_setting_name> = VALUE
+```
+Excerpt from P200.macro
 ```
 ; ******** BEGIN USER CONFIGURATION ********
 ; ATC Operations
@@ -80,7 +85,7 @@ Enter the appropriate values into this section.
 (debug, Units: #<_rc_units>)
 
 ; The number of pockets in your magazine.
-#<_rc_pockets> = 0
+#<_rc_pockets> = 6
 (debug, Pockets: #<_rc_pockets>)
 
 ...
