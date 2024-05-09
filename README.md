@@ -91,7 +91,7 @@ Example from P200.macro
 ...
 
 ; The optional reference position for TLO. This may remain at it's default of 0 or be customized.
-#<_rc_tlo_ref> = -43.566
+#<_rc_tlo_ref> = 0
 (debug, Tool Measure TLO Ref Pos: #<_rc_tlo_ref>)
 ; ********* END USER CONFIGURATION *********
 ```
