@@ -31,8 +31,8 @@ this limitation. Since the included functional macros may not call a configurati
 check to ensure that the RapidChange settings have already been loaded with P200.
 
 ### Tool 0
-Changing tools automatically to a bare spindle may not be achieved using T0. Calling M6 with 0 for the selected
-tool will bypass the TC.macro and simply set the current tool to 0 without unloading. These macros use Tool 98
+Changing tools automatically to a bare spindle may not be achieved using M6 T0. Calling M6 with 0 for the selected
+tool will bypass the TC.macro and simply set the current tool to 0 without unloading. The included macros use Tool 98
 as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
 same tool(None).
 
@@ -62,7 +62,7 @@ G65 P200 Q-
 ```
 Q-- specifies the current tool in the spindle (if any) to initialize.
 
-- Q0 loads RapidChange settings but makes no change to current tool. This is useful updating your settings.
+- Q0 loads RapidChange settings but makes no change to current tool. This is useful for updating your settings.
 
 - Q98 loads RapidChange settings and sets the current tool to 98(None).
 
@@ -76,7 +76,7 @@ Enter the appropriate values into this section.
 ; ******** BEGIN USER CONFIGURATION ********
 ; ATC Operations
 ; The units for your configuration: 20 = Inches, 21 = Millimeters
-#<_rc_units> = 20
+#<_rc_units> = ==20==
 (debug, Units: #<_rc_units>)
 
 ; The number of pockets in your magazine.
