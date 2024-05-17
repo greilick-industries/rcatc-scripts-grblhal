@@ -25,6 +25,21 @@ cycle. This means that anytime the firmware is rebooted or powered on, these val
 be initialized. P200 is included in this macro package to provide that initialization functionality. Once initialized,
 the settings will persist for the remainder of the session.
 
+To enable loading the settings at startup, you can use a Grbl startup block to call P200 every time you power on or reboot
+the firmware.
+
+First view your current startup blocks type `$N` from the console. You should see a response like this:
+```
+$N0=
+$N1=
+ok
+```
+Choose an empty startup block and assign the P200 macro like this:
+```
+$N0=G65 P200
+```
+This will run the P200 macro and store it to be called on startup.
+
 ### Nesting
 Nesting of macro calls is not currently supported in GrblHAL core. P200 is also designed to provide a workaround to
 this limitation. Since the included functional macros may not call a configuration macro, they instead make a logic 
@@ -45,32 +60,25 @@ It is a good idea to store a local copy of P200.macro, so that you can make chan
 Whenever you want to update one or more settings:
 - Make the appropriate changes to your local P200.macro.
 - Upload the modified P200.macro to your SD card.
-- Execute G65 P200 Q0 to update the settings.
+- Execute `G65 P200` to update the settings.
 
 ## Included Macros
 
 ### Installation
+Modify the P200 macro to contain the values for your configuration.
+
 Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
 the macros for the first time so that the firmware can recognize TC.macro.
 
+Add the P200 macro call to the startup blocks.
+
 ### P200
-P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
-reboot to initialize tool state and RapidChange ATC settings. 
-
+P200.macro contains the settings for all RapidChange ATC macros. This file should be modified to
+contain the appropriate values for your RapidChange ATC configuration. Call this macro upon startup using
+the startup blocks as well as anytime you make changes to your configuration.
 ```
-G65 P200 Q-
+G65 P200
 ```
-Q-- specifies the current tool in the spindle (if any) to initialize.
-
-- Q0 loads RapidChange settings but makes no change to current tool. This is useful for updating your settings.
-
-- Q98 loads RapidChange settings and sets the current tool to 98(None).
-
-- Using any other valid tool number will load RapidChange settings and set the current tool to that number. 
-It will then perform a tool measurement, leaving you in ready state.
-
-The User Configuration section at the beginning provides the variable declarations for all user settings.
-Enter the appropriate values into this section.
 
 Enter the appropriate VALUE
 ```
@@ -107,3 +115,20 @@ P231.macro performs a tool measurement if there is a valid current tool.
 
 ### TC.macro
 TC.macro is called whenever an M6 with a valid selected tool is encountered.
+
+## Workflow
+Upon startup sync the current tool in the spindle with the firmware.
+```
+M61 Qx
+```
+
+If there is a tool loaded, measure it.
+```
+G65 P231
+```
+
+The tool is now synced and the TLO recorded. These values will persist and be tracked
+for the remainder of your session.
+
+If at any time during your session the tool gets out of sync through an unexpected stop
+in the middle of a tool change cycle, follow the same steps before resuming operations.
