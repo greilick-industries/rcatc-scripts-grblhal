@@ -70,7 +70,7 @@ Modify the P200 macro to contain the values for your configuration.
 Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
 the macros for the first time so that the firmware can recognize TC.macro.
 
-Add the P200 macro call to the startup blocks.
+Add the `G65 P200` call to the startup blocks.
 
 ### P200
 P200.macro contains the settings for all RapidChange ATC macros. This file should be modified to
