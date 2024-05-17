@@ -94,12 +94,16 @@ Choose an empty startup block and assign the P200 macro like this:
 ```
 $N0=G65 P200
 ```
-This will run the P200 macro and store it to be called on startup.
+This will run the P200 macro and store it to be called at startup.
 
 ### Test Macros
-Your macros are now ready to be tested and fine tuned. It is always a good idea to first get the tool change working
-with all peripherals disabled(dust cover, tool recognition, tool measurement). Once you are satisfied, enable and test 
-each peripheral component individually.
+Your macros are now ready to be tested and fine tuned. Be sure to sync the current tool with the firmware before
+attempting a tool change for the first time.
+```
+M61 Qx
+```
+It is always a good idea to first get the tool change working with all peripherals disabled (dust cover, tool recognition, 
+tool measurement). Once you are satisfied, enable and test each peripheral component individually.
 
 ### Updating Settings
 Whenever you want to update one or more settings:
@@ -109,7 +113,7 @@ Whenever you want to update one or more settings:
 - There is no need to restart the firmware.
 
 ## Workflow
-Since the current tool and TLO are not persisted, these values will need to be initialized at startup.
+Once the ATC process is fully configured and ready, follow this workflow each time you startup or reboot the firmware.
 
 Sync the current tool in the spindle with the firmware.
 ```
@@ -121,8 +125,10 @@ If there is a tool loaded, measure it.
 G65 P231
 ```
 
-The tool is now synced and the TLO recorded. These values will persist and be tracked
-for the remainder of your session.
+The tool is now synced and the TLO recorded. These values will persist and be tracked for the remainder of your session.
+
+The TLO is employed using `G43.1`. You can reset the work Z at any time after the current tool has been measured. Each
+subsequent tool change and measurement will adust the tool length offset accordingly.
 
 If at any time during your session the tool gets out of sync through an unexpected stop
 in the middle of a tool change cycle, follow the same steps before resuming operations.
