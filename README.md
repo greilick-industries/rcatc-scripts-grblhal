@@ -25,8 +25,8 @@ cycle. This means that anytime the firmware is rebooted or powered on, these val
 be initialized. P200 is included in this macro package to provide that initialization functionality. Once initialized,
 the settings will persist for the remainder of the session.
 
-To enable loading the settings at startup, you can use a Grbl startup block to call P200 every time you power on or reboot
-the firmware.
+To enable automatically loading your RapidChange settings at startup, you can use a Grbl startup block to call P200 
+every time you power on or reboot the firmware.
 
 First view your current startup blocks type `$N` from the console. You should see a response like this:
 ```
@@ -39,11 +39,6 @@ Choose an empty startup block and assign the P200 macro like this:
 $N0=G65 P200
 ```
 This will run the P200 macro and store it to be called on startup.
-
-### Nesting
-Nesting of macro calls is not currently supported in GrblHAL core. P200 is also designed to provide a workaround to
-this limitation. Since the included functional macros may not call a configuration macro, they instead make a logic 
-check to ensure that the RapidChange settings have already been loaded with P200.
 
 ### Tool 0
 Changing tools automatically to a bare spindle may not be achieved using M6 T0. Calling M6 with 0 for the selected
