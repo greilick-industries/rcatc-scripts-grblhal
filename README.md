@@ -115,7 +115,7 @@ Whenever you want to update one or more settings:
 ## Workflow
 Once the ATC process is fully configured and ready, follow this workflow each time you startup or reboot the firmware.
 
-Sync the current tool in the spindle with the firmware.
+Sync the current tool with the firmware.
 ```
 M61 Qx
 ```
@@ -127,8 +127,9 @@ G65 P231
 
 The tool is now synced and the TLO recorded. These values will persist and be tracked for the remainder of your session.
 
-The TLO is employed using `G43.1`. You can reset the work Z at any time after the current tool has been measured. Each
-subsequent tool change and measurement will adust the tool length offset accordingly.
+The TLO is employed and tracked using `G43.1 Zx`. As long as you do not alter this value at any time, you can adjust your 
+work Z with your normal workflow method using any tool that has been measured and each subsequent tool change and measurement 
+will adust the tool length offset accordingly.
 
 If at any time during your session the tool gets out of sync through an unexpected stop
 in the middle of a tool change cycle, follow the same steps before resuming operations.
