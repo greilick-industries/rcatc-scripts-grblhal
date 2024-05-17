@@ -128,11 +128,11 @@ G65 P231
 The tool is now synced and the TLO recorded. These values will persist and be tracked for the remainder of your session.
 
 The TLO is employed and tracked using `G43.1 Zx`. As long as you do not alter this value at any time, you can adjust your 
-work Z with your normal workflow method using any tool that has been measured and each subsequent tool change and measurement 
-will adust the tool length offset accordingly.
+work Z using any tool that has been measured. Each subsequent tool change and measurement will adust the tool length offset 
+accordingly.
 
 If at any time during your session the tool gets out of sync through an unexpected stop
-in the middle of a tool change cycle, follow the same steps before resuming operations.
+in the middle of a tool change cycle, follow the steps above before resuming operations.
 
 ## Important Notes
 
