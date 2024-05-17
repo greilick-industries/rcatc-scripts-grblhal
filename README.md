@@ -16,61 +16,15 @@ Your board must support reading from an SD card. To build supported firmware:
 - Make sure RS274 NGC Expression support is checked.
 - Generate and download the firmware.
 
-## Important Notes
-
-### Persistance
-
-The current tool, tool offset, and RapidChange settings only persist for the duration of a single firmware power
-cycle. This means that anytime the firmware is rebooted or powered on, these values will be lost and will need to
-be initialized. P200 is included in this macro package to provide that initialization functionality. Once initialized,
-the settings will persist for the remainder of the session.
-
-### Nesting
-Nesting of macro calls is not currently supported in GrblHAL core. P200 is also designed to provide a workaround to
-this limitation. Since the included functional macros may not call a configuration macro, they instead make a logic 
-check to ensure that the RapidChange settings have already been loaded with P200.
-
-### Tool 0
-Changing tools automatically to a bare spindle may not be achieved using M6 T0. Calling M6 with 0 for the selected
-tool will bypass the TC.macro and simply set the current tool to 0 without unloading. The included macros use Tool 98
-as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
-same tool(None).
-
-### Debug Messages
-The included macros use the DEBUG function to provide messages to the user and aid in debugging when there is an
-unexpected issue. In order for the messages to print to the console, setting $534 must be set to 1.
-
-### Updating Settings
-It is a good idea to store a local copy of P200.macro, so that you can make changes to the settings in a text editor.
-Whenever you want to update one or more settings:
-- Make the appropriate changes to your local P200.macro.
-- Upload the modified P200.macro to your SD card.
-- Execute G65 P200 Q0 to update the settings.
-
 ## Included Macros
 
-### Installation
-Upload the provided macros to your SD card. You may need to reboot the firmware after uploading 
-the macros for the first time so that the firmware can recognize TC.macro.
-
 ### P200
-P200.macro contains the settings for all RapidChange ATC macros. Run this macro after a firmware
-reboot to initialize tool state and RapidChange ATC settings. 
-
+P200.macro contains the settings for all RapidChange ATC macros. This file should be modified to
+contain the appropriate values for your RapidChange ATC configuration. Call this macro upon startup using
+the startup blocks as well as anytime you make changes to your configuration.
 ```
-G65 P200 Q-
+G65 P200
 ```
-Q-- specifies the current tool in the spindle (if any) to initialize.
-
-- Q0 loads RapidChange settings but makes no change to current tool. This is useful for updating your settings.
-
-- Q98 loads RapidChange settings and sets the current tool to 98(None).
-
-- Using any other valid tool number will load RapidChange settings and set the current tool to that number. 
-It will then perform a tool measurement, leaving you in ready state.
-
-The User Configuration section at the beginning provides the variable declarations for all user settings.
-Enter the appropriate values into this section.
 
 Enter the appropriate VALUE
 ```
@@ -98,12 +52,97 @@ Example from P200.macro
 
 ### P208
 P208.macro opens the dust cover if enabled.
+```
+G65 P208
+```
 
 ### P209
 P209.macro closes the dust cover if enabled.
+```
+G65 P209
+```
 
 ### P231
 P231.macro performs a tool measurement if there is a valid current tool.
+```
+G65 P231
+```
 
 ### TC.macro
 TC.macro is called whenever an M6 with a valid selected tool is encountered.
+
+## Installation
+
+### Upload Macros
+It is a good idea to save a local copy of the P200.macro. You will need to modify this file 
+to make changes to your RapidChange configuration.
+
+Upload your modified P200.macro and the other provided macros to your SD card. You may need to reboot 
+the firmware after uploading the macros for the first time so that the firmware can recognize TC.macro.
+
+### Set Startup Block
+To enable automatically loading your RapidChange settings at startup, you can use a Grbl startup block to call P200 
+every time you power on or reboot the firmware.
+
+First view your current startup blocks type `$N` from the console. You should see a response like this:
+```
+$N0=
+$N1=
+ok
+```
+Choose an empty startup block and assign the P200 macro like this:
+```
+$N0=G65 P200
+```
+This will run the P200 macro and store it to be called at startup.
+
+### Test Macros
+Your macros are now ready to be tested and fine tuned. Be sure to sync the current tool with the firmware before
+attempting a tool change for the first time.
+```
+M61 Qx
+```
+It is always a good idea to first get the tool change working with all peripherals disabled (dust cover, tool recognition, 
+tool measurement). Once you are satisfied, enable and test each peripheral component individually.
+
+### Updating Settings
+Whenever you want to update one or more settings:
+- Make the appropriate changes to your local P200.macro.
+- Upload the modified P200.macro to your SD card.
+- Execute `G65 P200` to update the settings.
+- There is no need to restart the firmware.
+
+## Workflow
+Once the ATC process is fully configured and ready, follow this workflow each time you startup or reboot the firmware.
+
+Sync the current tool with the firmware.
+```
+M61 Qx
+```
+
+If there is a tool loaded, measure it.
+```
+G65 P231
+```
+
+The tool is now synced and the TLO recorded. These values will persist and be tracked for the remainder of your session.
+
+The TLO is employed and tracked using `G43.1 Zx`. As long as you do not alter this value at any time, you can adjust your 
+work Z using any tool that has been measured. Each subsequent tool change and measurement will adust the tool length offset 
+accordingly.
+
+If at any time during your session the tool gets out of sync through an unexpected stop
+in the middle of a tool change cycle, follow the steps above before resuming operations.
+
+## Important Notes
+
+### Tool 0
+Changing tools automatically to a bare spindle may not be achieved using M6 T0. Calling M6 with 0 for the selected
+tool will bypass the TC.macro and simply set the current tool to 0 without unloading. The included macros use Tool 98
+as a substitute for Tool 0 as a workaround for this behavior. All of the macros treat Tool 0 and Tool 98 as the 
+same tool(None).
+
+### Debug Messages
+The included macros use the DEBUG function to provide messages to the user and aid in debugging when there is an
+unexpected issue. In order for the messages to print to the console, setting $534 must be set to 1.
+
