@@ -74,7 +74,7 @@ TC.macro is called whenever an M6 with a valid selected tool is encountered.
 ## Installation
 
 ### Upload Macros
-It is a good idea to save a local copy of the P200.macro. You will need to modify this file with 
+It is a good idea to save a local copy of the P200.macro. You will need to modify this file 
 to make changes to your RapidChange configuration.
 
 Upload your modified P200.macro and the other provided macros to your SD card. You may need to reboot 
@@ -98,8 +98,8 @@ This will run the P200 macro and store it to be called on startup.
 
 ### Test Macros
 Your macros are now ready to be tested and fine tuned. It is always a good idea to first get the tool change working
-with all peripherals (dust cover, tool recognition, tool measurement) disabled. Then enable and test each peripheral
-one at a time.
+with all peripherals disabled(dust cover, tool recognition, tool measurement). Once you are satisfied, enable and test 
+each peripheral component individually.
 
 ### Updating Settings
 Whenever you want to update one or more settings:
